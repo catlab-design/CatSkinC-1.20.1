@@ -2,16 +2,19 @@ package com.sammy.catskincRemake.forge;
 
 import com.sammy.catskincRemake.CatskincRemake;
 import dev.architectury.platform.forge.EventBuses;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-@Mod(CatskincRemake.MOD_ID)
+@Mod(CatskincRemakeForge.FORGE_MOD_ID)
+@SuppressWarnings("removal")
 public final class CatskincRemakeForge {
-    public CatskincRemakeForge() {
-        // Submit our event bus to let Architectury API register our content on the right time.
-        EventBuses.registerModEventBus(CatskincRemake.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
+    public static final String FORGE_MOD_ID = "catskinc_remake";
 
-        // Run our common setup.
+    public CatskincRemakeForge() {
+        EventBuses.registerModEventBus(FORGE_MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
         CatskincRemake.init();
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> CatskincRemakeForgeClient::registerClientInit);
     }
 }

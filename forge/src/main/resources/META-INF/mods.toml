@@ -4,7 +4,7 @@ loaderVersion = "[47,)"
 license = "MIT"
 
 [[mods]]
-modId = "catskinc-remake"
+modId = "catskinc_remake"
 version = "${version}"
 displayName = "CatSkinC-Remake"
 authors = "Q Team Studio"
@@ -13,21 +13,21 @@ description = '''
 '''
 #logoFile = ""
 
-[[dependencies.catskinc-remake]]
+[[dependencies.catskinc_remake]]
 modId = "forge"
 mandatory = true
 versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.catskinc-remake]]
+[[dependencies.catskinc_remake]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.20.1,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.catskinc-remake]]
+[[dependencies.catskinc_remake]]
 modId = "architectury"
 mandatory = true
 versionRange = "[9.2.14,)"

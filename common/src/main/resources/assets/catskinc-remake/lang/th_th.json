@@ -1,0 +1,48 @@
+{
+  "key.categories.catskinc-remake": "CatSkinC-Remake",
+  "key.catskinc-remake.open_ui": "เปิดหน้าจอจัดการสกิน",
+
+  "title.skin_management": "Skin Manager",
+  "title.skin_cloud": "Skin Cloud",
+
+  "screen.catskinc-remake.title": "อัปโหลดสกิน",
+  "screen.catskinc-remake.history": "ประวัติสกิน",
+  "screen.catskinc-remake.button.open_history": "เปิดโฟลเดอร์ประวัติ",
+  "screen.catskinc-remake.button.upload": "อัปโหลด",
+  "screen.catskinc-remake.button.settings": "ตั้งค่า",
+  "screen.catskinc-remake.slim_model": "โมเดลแบบ Slim",
+  "screen.catskinc-remake.drop_hint": "[ลากไฟล์ PNG มาวางที่นี่]",
+
+  "toast.file.selected": "เลือกไฟล์แล้ว: %s",
+  "toast.upload.title": "กำลังอัปโหลด...",
+  "toast.upload.preparing": "กำลังเตรียมไฟล์",
+  "toast.upload.start": "เริ่มอัปโหลด (%s)",
+  "toast.upload.success": "สำเร็จ",
+  "toast.upload.failed": "ไม่สำเร็จ",
+
+  "toast.cloud.checking": "กำลังตรวจสอบการเชื่อมต่อ...",
+  "toast.cloud.connected": "เชื่อมต่อแล้ว",
+  "toast.cloud.failed": "เชื่อมต่อไม่สำเร็จ",
+
+  "toast.error.not_png": "ไฟล์ต้องเป็น .png",
+  "toast.error.drag_not_png": "ไฟล์ที่ลากมาไม่ใช่ .png",
+  "toast.error.read_failed": "อ่านไฟล์ไม่สำเร็จ",
+  "toast.error.invalid_dimensions": "PNG ต้องเป็นสี่เหลี่ยมจัตุรัส (กำลังสอง) ขนาด 64 ถึง 4096",
+
+  "config.catskinc-remake.title": "ตั้งค่า CatSkinC",
+  "config.catskinc-remake.category.general": "ทั่วไป",
+  "config.catskinc-remake.category.network": "เครือข่าย",
+  "config.catskinc-remake.open_key": "ปุ่มเปิดหน้าจอ",
+  "config.catskinc-remake.open_key.tooltip": "รหัสปุ่ม GLFW สำหรับเปิดหน้าอัปโหลด",
+  "config.catskinc-remake.refresh_ms": "ช่วงรีเฟรชสกิน (มิลลิวินาที)",
+  "config.catskinc-remake.ensure_ticks": "ช่วงตรวจสอบสำรอง (tick)",
+  "config.catskinc-remake.ensure_limit": "จำนวนผู้เล่นต่อรอบ",
+  "config.catskinc-remake.ui_scale": "ขนาด UI",
+  "config.catskinc-remake.base_url": "API base URL",
+  "config.catskinc-remake.path_upload": "พาธอัปโหลด",
+  "config.catskinc-remake.path_select": "พาธเลือกสกิน",
+  "config.catskinc-remake.path_selected": "พาธข้อมูลสกินที่เลือก",
+  "config.catskinc-remake.path_public": "พาธไฟล์สาธารณะ",
+  "config.catskinc-remake.path_events": "พาธ event stream",
+  "config.catskinc-remake.timeout_ms": "หมดเวลาเครือข่าย (ms)"
+}

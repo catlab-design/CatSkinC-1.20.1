@@ -3,7 +3,7 @@
   "id": "catskinc-remake",
   "version": "${version}",
   "name": "CatSkinC-Remake",
-  "description": "",
+  "description": "Cloud skin upload and live sync for CatSkinC.",
   "authors": [
     "Q Team Studio"
   ],
@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "icon": "assets/catskinc-remake/icon.png",
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
     "main": [
       "com.sammy.catskincRemake.fabric.CatskincRemakeFabric"
@@ -25,13 +25,10 @@
     "catskinc-remake.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.18.4",
-    "minecraft": "~1.20.1",
+    "fabricloader": ">=0.15.0",
+    "minecraft": ">=1.20.1",
     "java": ">=17",
     "architectury": ">=9.2.14",
     "fabric-api": "*"
-  },
-  "suggests": {
-    "another-mod": "*"
   }
 }

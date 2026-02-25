@@ -1,10 +1,13 @@
 package com.sammy.catskincRemake.fabric.client;
 
+import com.sammy.catskincRemake.client.CatskincRemakeClient;
+import com.sammy.catskincRemake.client.ModSounds;
 import net.fabricmc.api.ClientModInitializer;
 
 public final class CatskincRemakeFabricClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        // This entrypoint is suitable for setting up client-specific logic, such as rendering.
+        ModSounds.register();
+        CatskincRemakeClient.init();
     }
 }
