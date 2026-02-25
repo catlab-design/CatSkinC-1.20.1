@@ -46,6 +46,20 @@ Linux/macOS:
 
 Output jars are generated under each module `build/libs/` directory.
 
+## CI / CD
+
+- GitHub Actions: `.github/workflows/ci.yml`
+- GitLab CI: `.gitlab-ci.yml`
+- Jenkins: `Jenkinsfile`
+
+All pipelines build using Java 17 and run:
+
+- `:common:compileJava`
+- `:fabric:compileJava`
+- `:forge:compileJava`
+- `:fabric:remapJar`
+- `:forge:remapJar`
+
 ## Dev Run
 
 Fabric client:

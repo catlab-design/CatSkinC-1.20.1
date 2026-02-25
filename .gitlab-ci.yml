@@ -1,0 +1,37 @@
+image: eclipse-temurin:17-jdk
+
+stages:
+  - validate
+  - build
+
+variables:
+  GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle"
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+cache:
+  key: "${CI_PROJECT_ID}-${CI_COMMIT_REF_SLUG}"
+  paths:
+    - .gradle/wrapper/
+    - .gradle/caches/
+
+before_script:
+  - chmod +x gradlew
+  - java -version
+
+validate:
+  stage: validate
+  script:
+    - ./gradlew --no-daemon :common:compileJava :fabric:compileJava :forge:compileJava
+
+build_jars:
+  stage: build
+  needs:
+    - validate
+  script:
+    - ./gradlew --no-daemon :fabric:remapJar :forge:remapJar
+  artifacts:
+    when: always
+    expire_in: 7 days
+    paths:
+      - fabric/build/libs/*.jar
+      - forge/build/libs/*.jar
