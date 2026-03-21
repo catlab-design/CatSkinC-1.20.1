@@ -686,8 +686,14 @@ extends Screen {
             int n15 = Math.min(n13 - 16, 28);
             int n16 = n11 + 6;
             int n17 = n10 + (n13 - n15) / 2;
-            if (historyEntry.thumbId != null) {
+            if (historyEntry.previewSkinId != null) {
+                drawContext.enableScissor(n16 - 1, n17 - 1, n16 + n15 + 1, n17 + n15 + 1);
+                PlayerHeadRendererCompat.drawHead(drawContext, historyEntry.previewSkinId, n16, n17, n15);
+                drawContext.disableScissor();
+            } else if (historyEntry.thumbId != null) {
                 drawContext.drawTexture(historyEntry.thumbId, n16, n17, 0.0f, 0.0f, n15, n15, n15, n15);
+            }
+            if (historyEntry.previewSkinId != null || historyEntry.thumbId != null) {
                 SkinUploadScreen.drawRectBorder(drawContext, n16 - 1, n17 - 1, n15 + 2, n15 + 2, 0x36666666);
             }
             n7 = 12;
@@ -1124,8 +1130,12 @@ extends Screen {
     private void disposeHistory() {
         MinecraftClient minecraftClient = MinecraftClient.getInstance();
         for (HistoryEntry historyEntry : this.history) {
-            if (historyEntry.thumbId == null || minecraftClient == null) continue;
-            minecraftClient.getTextureManager().destroyTexture(historyEntry.thumbId);
+            if (minecraftClient == null) continue;
+            if (historyEntry.thumbId != null) {
+                minecraftClient.getTextureManager().destroyTexture(historyEntry.thumbId);
+            }
+            if (historyEntry.previewSkinId == null) continue;
+            minecraftClient.getTextureManager().destroyTexture(historyEntry.previewSkinId);
         }
         this.history.clear();
     }
@@ -1143,14 +1153,18 @@ extends Screen {
                 NativeImage nativeImage = NativeImage.read((InputStream)fileInputStream);
                 int n = nativeImage.getWidth();
                 int n2 = nativeImage.getHeight();
-                NativeImage nativeImage2 = SkinUploadScreen.createHeadThumbnail(nativeImage, 64);
-                nativeImage.close();
+                NativeImage nativeImage2 = SkinHeadThumbnailFactory.createIsometricHeadThumbnail(nativeImage, 64);
                 NativeImageBackedTexture nativeImageBackedTexture = new NativeImageBackedTexture(nativeImage2);
                 nativeImageBackedTexture.setFilter(false, false);
                 Identifier identifier = Identifiers.mod("thumb/" + System.nanoTime());
                 MinecraftClient.getInstance().getTextureManager().registerTexture(identifier, (AbstractTexture)nativeImageBackedTexture);
+                NativeImageBackedTexture nativeImageBackedTexture2 = new NativeImageBackedTexture(nativeImage);
+                nativeImageBackedTexture2.setFilter(false, false);
+                Identifier identifier2 = Identifiers.mod("preview/" + System.nanoTime());
+                MinecraftClient.getInstance().getTextureManager().registerTexture(identifier2, (AbstractTexture)nativeImageBackedTexture2);
                 HistoryEntry historyEntry = new HistoryEntry(file2);
                 historyEntry.thumbId = identifier;
+                historyEntry.previewSkinId = identifier2;
                 historyEntry.width = n;
                 historyEntry.height = n2;
                 this.history.add(historyEntry);
@@ -1174,6 +1188,9 @@ extends Screen {
         }
         if (historyEntry.thumbId != null) {
             MinecraftClient.getInstance().getTextureManager().destroyTexture(historyEntry.thumbId);
+        }
+        if (historyEntry.previewSkinId != null) {
+            MinecraftClient.getInstance().getTextureManager().destroyTexture(historyEntry.previewSkinId);
         }
         if (this.selectedFile != null && this.selectedFile.equals(historyEntry.file)) {
             this.selectedFile = null;
@@ -1592,6 +1609,7 @@ extends Screen {
     private static class HistoryEntry {
         final File file;
         Identifier thumbId;
+        Identifier previewSkinId;
         int width;
         int height;
 
